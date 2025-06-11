@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".devinfo">
+
+    <TextView
+        android:id="@+id/developerInfoHeader"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:text="Developer Info"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="#2040FF"
+        android:gravity="center"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="327dp"
+        android:layout_height="264dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:contentDescription="Profile Image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mypic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/developerInfoHeader" />
+
+    <LinearLayout
+        android:id="@+id/infoBox"
+        android:layout_width="404dp"
+        android:layout_height="370dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:background="#9FB2E0"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@id/profileImage"
+        tools:layout_editor_absoluteX="3dp">
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name - J.A.P.Y.D Jayawardhana"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/studentInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Student no - 2022T01540"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/personalStatement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Personal statement - I am a motivated BICT student at the University of Colombo, passionate about using technology to make a difference. I enjoy learning new skills and contributing to innovative projects."
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/releaseVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Release version - 1.0.0"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="55dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="44dp"
+        android:contentDescription="Back Button"
+        android:padding="8dp"
+        android:src="@drawable/arrowback"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
