@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1008006426675",
+    "firebase_url": "https://technonews-40ace-default-rtdb.firebaseio.com",
+    "project_id": "technonews-40ace",
+    "storage_bucket": "technonews-40ace.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008006426675:android:aa6f697cd8bdfd87037346",
+        "android_client_info": {
+          "package_name": "com.example.technonews"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqDmnmf3ihli2K_ipmlHl3Uoe0IwqPc1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -211,7 +211,7 @@
         android:background="@drawable/rounded_header_bg"
         android:enabled="false"
         android:padding="12dp"
-        android:text="**************"
+        android:text="******"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

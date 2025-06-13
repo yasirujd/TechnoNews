@@ -95,18 +95,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email" />
 
-    <ImageView
-        android:id="@+id/visibility_off_50dp_777a83_fill0_wght400_grad0_opsz48"
-        android:layout_width="47dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="Visibility Toggle"
-        android:src="@drawable/visibility_off_50dp_777a83_fill0_wght400_grad0_opsz48"
-        android:tint="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="@id/password"
-        app:layout_constraintEnd_toEndOf="@id/password"
-        app:layout_constraintTop_toTopOf="@id/password"
-        app:layout_constraintVertical_bias="0.692" />
+
 
     <EditText
         android:id="@+id/confirm_password"
