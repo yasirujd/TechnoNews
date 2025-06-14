@@ -49,7 +49,7 @@
         android:inputType="textEmailAddress"
         android:letterSpacing="0.02"
         android:padding="16dp"
-        android:textSize="15dp"
+        android:textSize="13dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewEmailLabel" />
@@ -90,11 +90,11 @@
             android:inputType="textPassword"
             android:letterSpacing="0.02"
             android:padding="16dp"
-            android:textSize="15dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imageButtonTogglePassword"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButtonTogglePassword"
