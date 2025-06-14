@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_section"
-        android:layout_width="453dp"
+        android:layout_width="0dp"
         android:layout_height="118dp"
         android:background="#2D59C1"
         android:paddingStart="16dp"
@@ -94,13 +94,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_box"
-        android:layout_width="400dp"
-        android:layout_height="443dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/rectep"
+        android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
@@ -122,6 +123,8 @@
             android:textColor="#0000FF"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -132,6 +135,7 @@
             android:layout_height="24dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/editpen"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/index_no"
             app:layout_constraintEnd_toEndOf="@id/index_no"
             app:layout_constraintTop_toTopOf="@id/index_no" />
@@ -150,6 +154,8 @@
             android:textColor="#0000FF"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/index_no" />
@@ -160,6 +166,7 @@
             android:layout_height="24dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/editpen"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/username"
             app:layout_constraintEnd_toEndOf="@id/username"
             app:layout_constraintTop_toTopOf="@id/username" />
@@ -178,6 +185,8 @@
             android:textColor="#0000FF"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/username" />
@@ -188,6 +197,7 @@
             android:layout_height="24dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/editpen"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/email"
             app:layout_constraintEnd_toEndOf="@id/email"
             app:layout_constraintTop_toTopOf="@id/email" />
@@ -207,6 +217,8 @@
             android:textColor="#0000FF"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email" />
@@ -217,6 +229,7 @@
             android:layout_height="24dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/editpen"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@id/password"
             app:layout_constraintEnd_toEndOf="@id/password"
             app:layout_constraintTop_toTopOf="@id/password" />

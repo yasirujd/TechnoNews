@@ -31,6 +31,10 @@ public class profile extends AppCompatActivity {
     private EditText emailEditText, indexNoEditText, usernameEditText;
     private ImageView logoutIcon;
 
+    private String currentIndexNo;
+    private String currentUsername;
+    private String currentEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,17 +48,6 @@ public class profile extends AppCompatActivity {
         usernameEditText = findViewById(R.id.username);
         logoutIcon = findViewById(R.id.logout_icon);
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null) {
-            Toast.makeText(this, "No user logged in.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(profile.this, signin.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
-
-        loadUserProfile(currentUser);
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -67,8 +60,45 @@ public class profile extends AppCompatActivity {
         });
 
         findViewById(R.id.edit_profile_button).setOnClickListener(v -> {
-            Intent intent = new Intent(profile.this, editprofile.class);
-            startActivity(intent);
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            if (currentUser != null) {
+                String userId = currentUser.getUid();
+                DocumentReference docRef = db.collection("users").document(userId);
+
+                Toast.makeText(profile.this, "Loading profile for editing...", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Attempting to fetch profile data for editprofile.");
+
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+                                String fetchedIndexNo = document.getString("indexNo");
+                                String fetchedUsername = document.getString("username");
+                                String fetchedEmail = currentUser.getEmail();
+
+                                Log.d(TAG, "Fetched data for editprofile: IndexNo=" + fetchedIndexNo + ", Username=" + fetchedUsername + ", Email=" + fetchedEmail);
+
+                                Intent intent = new Intent(profile.this, editprofile.class);
+                                intent.putExtra("indexNo", fetchedIndexNo);
+                                intent.putExtra("username", fetchedUsername);
+                                intent.putExtra("email", fetchedEmail);
+                                startActivity(intent);
+                            } else {
+                                Log.d(TAG, "No such document found for user: " + userId + " when preparing for editprofile.");
+                                Toast.makeText(profile.this, "User data not found for editing. Please ensure your profile is complete.", Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Log.e(TAG, "Failed to load profile for editing: " + task.getException().getMessage(), task.getException());
+                            Toast.makeText(profile.this, "Failed to load profile for editing.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            } else {
+                Toast.makeText(this, "No user logged in to edit profile.", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Edit profile button clicked but no user is logged in.");
+            }
         });
 
         logoutIcon.setOnClickListener(v -> {
@@ -77,8 +107,27 @@ public class profile extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            Toast.makeText(this, "No user logged in. Redirecting to Sign In.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(profile.this, signin.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        } else {
+            // This loads data for the current profile page display
+            loadUserProfile(currentUser);
+        }
+    }
+
     private void loadUserProfile(FirebaseUser currentUser) {
-        emailEditText.setText(currentUser.getEmail());
+        currentEmail = currentUser.getEmail();
+        emailEditText.setText(currentEmail);
+        Log.d(TAG, "Displayed email on profile page: " + currentEmail);
+
 
         String userId = currentUser.getUid();
         DocumentReference docRef = db.collection("users").document(userId);
@@ -89,18 +138,28 @@ public class profile extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document != null && document.exists()) {
-                        String indexNo = document.getString("indexNo");
-                        String username = document.getString("username");
+                        currentIndexNo = document.getString("indexNo");
+                        currentUsername = document.getString("username");
 
-                        indexNoEditText.setText(indexNo);
-                        usernameEditText.setText(username);
+                        indexNoEditText.setText(currentIndexNo);
+                        usernameEditText.setText(currentUsername);
+                        Log.d(TAG, "Displayed Firestore data on profile page: IndexNo=" + currentIndexNo + ", Username=" + currentUsername);
+
                     } else {
-                        Log.d(TAG, "No such document");
-                        Toast.makeText(profile.this, "User data not found.", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "No such document in Firestore for user: " + userId);
+                        Toast.makeText(profile.this, "User data not found in Firestore.", Toast.LENGTH_SHORT).show();
+                        currentIndexNo = "";
+                        currentUsername = "";
+                        indexNoEditText.setText(""); // Clear if no data
+                        usernameEditText.setText(""); // Clear if no data
                     }
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                    Toast.makeText(profile.this, "Failed to load profile.", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Failed to load profile data from Firestore for display: " + task.getException().getMessage(), task.getException());
+                    Toast.makeText(profile.this, "Failed to load profile for display.", Toast.LENGTH_SHORT).show();
+                    currentIndexNo = "";
+                    currentUsername = "";
+                    indexNoEditText.setText(""); // Clear on failure
+                    usernameEditText.setText(""); // Clear on failure
                 }
             }
         });
