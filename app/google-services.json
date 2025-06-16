@@ -13,7 +13,20 @@
           "package_name": "com.example.technonews"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1008006426675-limjkahcfe6hce37qkhjn5mneu8g8luc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.technonews",
+            "certificate_hash": "4b666ce0dd06bf67b90dc42a371700f348d44347"
+          }
+        },
+        {
+          "client_id": "1008006426675-t3rmfquudd0dk36f74tacmnjsu2sgumi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCqDmnmf3ihli2K_ipmlHl3Uoe0IwqPc1I"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008006426675-t3rmfquudd0dk36f74tacmnjsu2sgumi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
