@@ -119,7 +119,7 @@
         android:focusable="true"
         android:letterSpacing="0.02"
         android:text="Forgot password?"
-        android:textColor="@android:color/black"
+        android:textColor="#282727"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@id/passwordInputLayout"
         app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
